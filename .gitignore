@@ -1,13 +1,10 @@
 # Ignore everything
-
 *
 
 # Don't ignore directories
-!
-*/
+!*/
 
 # Don't ignore .gitignore and the scripts folder.
-
 !*.gitignore
 
 !Assets/_Scripts/*
