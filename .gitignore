@@ -8,3 +8,5 @@
 !*.gitignore
 
 !Assets/_Scripts/*
+!Assets/_Scripts/DragonStates/*
+!Assets/_Scripts/DragonCommands/*

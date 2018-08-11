@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : MonoBehaviour, IHandleInput
+{
 
-    IPlayerCommand buttonX;
-    IPlayerCommand buttonA;
-    IPlayerCommand buttonB;
+    IDragonCommand buttonX;
+    IDragonCommand buttonA;
+    IDragonCommand buttonB;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class PlayerInput : MonoBehaviour {
         return new Vector3(Input.GetAxis("Horizontal"),0.0f, Input.GetAxis("Vertical"));
     }
 
-    public IPlayerCommand Action()
+    public IDragonCommand Action()
     {
         if (Input.GetButtonDown("Fire1"))
         {
