@@ -2,8 +2,11 @@
 
 public class FlinchingState : IDragonState
 {
-    public IDragonState HandleInput(DragonController dragonController, IHandleInput input)
+    public IDragonState HandleInput(DragonController dragon, IHandleInput input)
     {
+        Debug.Log("Flinchstate Active");
+        if(dragon.isFlinching) return null;
+
         if(input.Move() == Vector3.zero)
         {
             return new IdlingState();
@@ -20,6 +23,7 @@ public class FlinchingState : IDragonState
 
     public void Enter(DragonController dragon)
     {
+        Debug.Log("FLINCH STATE ENTERED");
         dragon.PlayFlinchAnimation();
     }
 }

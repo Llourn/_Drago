@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DragonController : MonoBehaviour
 {
+    public bool isRobot = false;
     public float moveSpeed = 1.0f;
+
+    public bool isFlinching = false;
 
     [HideInInspector]
     public bool executingAction = false;
@@ -18,12 +21,22 @@ public class DragonController : MonoBehaviour
     private void Start()
     {
         state = new IdlingState();
-        inputSource = GetComponent<PlayerInput>();
+        if(isRobot){
+            inputSource = GetComponent<DragonRobot>();
+        } else {
+            inputSource = GetComponent<PlayerInput>();
+        }
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if(isFlinching)
+        {
+            HandleInput();
+            return;
+        }
+
         if (inputSource.Move() != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(inputSource.Move());
@@ -81,6 +94,19 @@ public class DragonController : MonoBehaviour
     public void PlayFlinchAnimation()
     {
         animator.SetTrigger(anim.flinch);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Projectile"))
+        {
+            isFlinching = true;
+        }
+    }
+
+    public void StopFlinching()
+    {
+        isFlinching = false;
     }
 
     public class Anim

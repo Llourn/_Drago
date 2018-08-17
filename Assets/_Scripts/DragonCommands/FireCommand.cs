@@ -6,7 +6,6 @@ public class FireCommand : IDragonCommand
 
     public void Execute()
     {
-        Debug.Log("FIRE!");
     }
 
     public string CommandName()

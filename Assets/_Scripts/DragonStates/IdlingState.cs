@@ -4,6 +4,8 @@ public class IdlingState : IDragonState
 {
     public IDragonState HandleInput(DragonController dragon, IHandleInput input)
     {
+        if(dragon.isFlinching) return new FlinchingState();
+        
         if(dragon.executingAction) return null;
 
         if(input.Action() != null)

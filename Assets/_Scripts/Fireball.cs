@@ -10,9 +10,13 @@ public class Fireball : MonoBehaviour
 	{
 		if(!other.CompareTag("Particle Effect"))
 		{
-			Instantiate(fireballExplosion, this.transform.position, Quaternion.identity);
-			Destroy(this.gameObject);
+			if(!other.CompareTag("Deflector"))
+			{
+				Instantiate(fireballExplosion, this.transform.position, Quaternion.identity);
+				Destroy(this.gameObject);
+			}
 		}
+
 	}
 
 }
